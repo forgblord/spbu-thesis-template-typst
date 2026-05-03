@@ -9,6 +9,7 @@
 
   show heading: set text(font: "Arial")
   show heading: set block(above: 2em, below: 1em)
+  show heading: set align(center)
   show heading.where(level: 1): set text(size: 18pt)
   show heading.where(level: 2): set text(size: 16pt)
   show heading.where(level: 3): set text(size: 14pt)
