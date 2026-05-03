@@ -56,11 +56,11 @@
 // Apply styling for block code snippets
 #show raw.where(block: true): it => {
   block(
-    fill: luma(240), // Light gray background
+    // fill: luma(240), // Light gray background
     inset: 10pt, // Padding
     // radius: 4pt,         // Rounded corners
     width: 100%,
-    // stroke: 1pt + luma(200),
+    stroke: 0.25pt + black,
     align(start, it),
   )
 }
