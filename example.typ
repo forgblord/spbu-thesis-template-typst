@@ -1,22 +1,8 @@
 #import "titlepage.typ": title_page
 #import "main-content.typ": configure_content, uheading
 
-#set page(
-  paper: "a4",
-  margin: (
-    top: 2cm,
-    bottom: 2cm,
-    left: 3cm,
-    right: 1.5cm,
-  ),
-  numbering: "1",
-)
-
-#set text(
-  size: 14pt,
-  font: "Times New Roman",
-  lang: "ru",
-)
+// Apply content-related styling
+#show: configure_content
 
 #title_page(
   author_name: (
@@ -49,36 +35,12 @@
 )
 
 #pagebreak()
-
-// Apply content-related styling
-#show: configure_content
-
-// Apply styling for block code snippets
-#show raw.where(block: true): it => {
-  block(
-    // fill: luma(240), // Light gray background
-    inset: 10pt, // Padding
-    // radius: 4pt,         // Rounded corners
-    width: 100%,
-    stroke: 0.25pt + black,
-    align(start, it),
-  )
-}
-
-#show figure.caption: set text(size: 12pt)
-
-#show outline.entry: set block(above: 1.2em)
 #outline(
   indent: 1em,
   title: [Содержание],
 )
 
-#show table: set text(size: 12pt)
-
-#show raw: set text(font: "Consolas")
-
 #pagebreak()
-
 #uheading[Введение]
 
 Используя самописную функцию `uheading`, можно добавлять главы, в которых не нужна нумерация!
@@ -115,7 +77,6 @@
 - "Список использованных источников"
 
 #pagebreak()
-
 = Название главы
 
 #lorem(20)
@@ -214,7 +175,6 @@ _Пронумерованные списки_ выглядят так:
 Таким образом, @article_example @web_example.
 
 #pagebreak()
-
 = Больше я не знаю, что еще надо
 
 #lorem(20)
@@ -228,7 +188,6 @@ _Пронумерованные списки_ выглядят так:
 #lorem(100)
 
 #pagebreak()
-
 #bibliography(
   "sources.bib",
   style: "gost-r-705-2008-numeric",

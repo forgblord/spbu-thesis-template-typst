@@ -62,7 +62,7 @@
       "#field_of_study.at("name")"
     ]
 
-    Основная образовательная программа 
+    Основная образовательная программа
     #text(style: "italic")[
       #program_name.at("code")
       "#program_name.at("name")"
@@ -132,7 +132,7 @@
   year: "2026",
 ) = [
   #set page(numbering: none)
-  
+
   #align(center)[
     Санкт-Петербургский государственный университет
   ]
