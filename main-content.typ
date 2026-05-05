@@ -1,5 +1,22 @@
 // This file configures layout for the main content
 #let configure_content(body) = {
+  set page(
+    paper: "a4",
+    margin: (
+      top: 2cm,
+      bottom: 2cm,
+      left: 3cm,
+      right: 1.5cm,
+    ),
+    numbering: "1",
+  )
+
+  set text(
+    size: 14pt,
+    font: "Times New Roman",
+    lang: "ru",
+  )
+
   set par(
     justify: true,
     leading: 0.5em,
@@ -26,6 +43,50 @@
 
   show bibliography: it => {
     show heading.where(level: 1): set heading(numbering: none)
+    it
+  }
+
+  // Apply styling for block code snippets
+  show raw.where(block: true): it => {
+    block(
+      // fill: luma(240), // Light gray background
+      inset: 10pt, // Padding
+      // radius: 4pt,         // Rounded corners
+      width: 100%,
+      stroke: 0.25pt + black,
+      align(start, it),
+    )
+  }
+
+  show figure.caption: set text(size: 12pt)
+
+  show outline.entry: set block(above: 1.2em)
+
+  show table: set text(size: 12pt)
+
+  show raw: set text(font: "Consolas")
+
+  set list(
+    spacing: 1em,
+    // indent: 2.5cm-1em,
+    indent: 1.25cm,
+    marker: ([•], [◦], [▪]),
+  )
+
+  show list: it => {
+    set list(indent: 1.25cm)
+    it
+  }
+
+  set enum(
+    full: true,
+    spacing: 1em,
+    // indent: 2.5cm-1em,
+    indent: 1.25cm,
+  )
+
+  show enum: it => {
+    set enum(indent: 1.25cm)
     it
   }
 
