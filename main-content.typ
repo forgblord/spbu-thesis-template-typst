@@ -9,6 +9,7 @@
       right: 1.5cm,
     ),
     numbering: "1",
+    footer-descent: 0em,
   )
 
   set text(
@@ -19,7 +20,7 @@
 
   set par(
     justify: true,
-    leading: 0.5em,
+    leading: 1em,
     first-line-indent: (amount: 1.25cm, all: true),
     spacing: 1em,
   )
