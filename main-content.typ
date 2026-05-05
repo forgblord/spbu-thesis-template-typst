@@ -9,6 +9,7 @@
       right: 1.5cm,
     ),
     numbering: "1",
+    footer-descent: 0em,
   )
 
   set text(
