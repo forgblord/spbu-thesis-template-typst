@@ -2,22 +2,6 @@
 // THIS IS CONFIG FILE FOR THE TITLEPAGE
 // =====
 
-#set page(
-  paper: "a4",
-  margin: (
-    top: 2cm,
-    bottom: 2cm,
-    left: 3cm,
-    right: 1.5cm,
-  ),
-)
-
-#set text(
-  font: "Times New Roman",
-  size: 14pt,
-  lang: "ru",
-)
-
 #let author_thesis_name(
   author_name: (
     first_name: "Павел",

@@ -19,7 +19,7 @@
 
   set par(
     justify: true,
-    leading: 0.5em,
+    leading: 1em,
     first-line-indent: (amount: 1.25cm, all: true),
     spacing: 1em,
   )
