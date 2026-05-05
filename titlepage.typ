@@ -64,12 +64,16 @@
     name: "",
   ),
 ) = [
-    #block(width: 50%)[
-      #align(left)[
-        #person_relation:
+    #set par(
+      justify: false,
+      leading: 0.5em,
+      first-line-indent: 0em,
+      spacing: 0.5em,
+    )
+    #align(left)[
+      #person_relation:
 
-        #person.values().join(", ")
-      ]
+      #person.values().join(",\n")
     ]
 ]
 
@@ -139,17 +143,19 @@
   #v(25mm)
 
   #align(right)[
-    #evaluator_person(
-      person_relation: "Научный руководитель",
-      person: supervisor_person,
-    )
+    #block(width: auto)[
+      #evaluator_person(
+        person_relation: "Научный руководитель",
+        person: supervisor_person,
+      )
 
-    #v(10mm)
+      #v(10mm)
 
-    #evaluator_person(
-      person_relation: "Рецензент",
-      person: reviewer_person,
-    )
+      #evaluator_person(
+        person_relation: "Рецензент",
+        person: reviewer_person,
+      )
+    ]
   ]
 
   #pub_year(year: year)
