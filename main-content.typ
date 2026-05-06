@@ -1,4 +1,6 @@
-// This file configures layout for the main content
+// =====
+// THIS IS CONFIG FILE FOR THE CONTENTS OF YOUR THESIS
+// =====
 #let configure_content(body) = {
   set page(
     paper: "a4",

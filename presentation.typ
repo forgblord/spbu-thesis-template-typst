@@ -1,3 +1,6 @@
+// =====
+// THIS IS CONFIG FILE FOR THE PRESENTATION
+// =====
 #let theme_colors = (
   // main: cmyk(10%, 100%, 100%, 1%),
   red_1: rgb("#9F2D20"), // for dividers and headlines
