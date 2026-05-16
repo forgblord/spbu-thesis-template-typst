@@ -64,6 +64,31 @@
   show figure.caption: set text(size: 12pt)
 
   show outline.entry: set block(above: 1.2em)
+  show outline.entry: it => {
+    if it.element.func() == heading {
+      // get supplement for the heading
+      let suppl = it.element.supplement
+
+      // check for appropriate supplement content
+      if suppl == [Приложение] {
+        // fetch the exact counter sequence for this specific heading location
+        let heading_num = numbering(
+          it.element.numbering,
+          ..counter(heading).at(it.element.location()),
+        )
+
+        // re-order them to say: "Appendix A"
+        let new_prefix = [#suppl #heading_num. ]
+
+        // clear the native it.prefix() by passing 'none' and using new order
+        return link(
+          it.element.location(),
+          it.indented(none, new_prefix + it.inner()),
+        )
+      }
+    }
+    it
+  }
 
   show table: set text(size: 12pt)
 
@@ -96,4 +121,28 @@
   body
 }
 
-#let uheading = body => heading(numbering: none)[#body]
+#let uheading = body => heading(numbering: none, level: 1, body)
+#let uheading1 = body => heading(numbering: none, level: 1, body)
+#let uheading2 = body => heading(numbering: none, level: 2, body)
+
+#let appendix_section(content) = {
+  counter(heading).update(0)
+  show heading.where(level: 1): set heading(numbering: none)
+  show heading.where(level: 2): set heading(
+    numbering: (..n) => {
+      let n = n.pos()
+      let letter = ("А", "Б", "В", "Г", "Д", "Е", "Ж").at(n.at(1) - 1)
+      [#letter]
+    },
+    supplement: [Приложение],
+  )
+  show heading.where(level: 2): it => context {
+    let letter = numbering(it.numbering, ..counter(heading).at(it.location()))
+    block([
+      #text(weight: "bold")[Приложение #letter.]
+      #h(0.3em)
+      #it.body
+    ])
+  }
+  content
+}

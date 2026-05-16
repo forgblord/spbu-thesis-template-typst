@@ -1,5 +1,5 @@
-#import "titlepage.typ": title_page
-#import "main-content.typ": configure_content, uheading
+#import "titlepage.typ": *
+#import "main-content.typ": *
 
 // Apply content-related styling
 #show: configure_content
@@ -188,7 +188,103 @@ _Пронумерованные списки_ выглядят так:
 #lorem(100)
 
 #pagebreak()
+
+= О приложениях
+
+Приложения делаются с помощью функции `appendix_section`.
+Поскольку функциия вовзращает `content`-блок, то в ней все пишется с использованием стандартного markup'а.
+
+В приложениях обычно прикладываются: (1) листинги кода, (2) большие таблицы, (3) схемы, (4) ссылки на репозитории с проектом.
+
+Чтобы ссылаться на приложения внутри текста, используется синтаксис для ссылок, описанный ранее.
+Так, [@appendix_source_code] предоставляет ссылку на исходный код.
+
+#pagebreak()
+
 #bibliography(
   "sources.bib",
   style: "gost-r-705-2008-numeric",
 )
+#pagebreak()
+
+// #show is for applying appendix section styling to all content below
+#show: appendix_section
+
+= Приложения
+
+
+== Ссылка на репозиторий с исходным кодом <appendix_source_code>
+
+URL: #link("https://github.com/forgblord/spbu-thesis-template-typst") (дата обращения: 16.05.2026)
+
+== Сравнение котиков
+
+#figure()[
+  #table(
+    columns: (auto, 1fr, 1fr),
+    inset: 10pt,
+    align: horizon,
+
+    table.header([], [*Котенок*], [*Вес*]),
+
+    image("/images/lil_cat.jpg", height: 20%), [Рыжик], [200 грамм],
+    image("/images/lil_cat.jpg", height: 20%), [Коржик], [300 грамм],
+  )
+]
+
+== Реализация самого быстрого алгоритма сортировки
+
+#show figure: set block(breakable: true)
+#figure()[
+  ```C
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <time.h>
+  #include <stdbool.h>
+  #include <stddef.h>
+
+  void shuffle(int a[], int length) {
+      int temp;
+      int random;
+
+      for (size_t i = 0; i < length; i++) {
+          random = rand() % length;
+          temp = a[random];
+          a[random] = a[i];
+          a[i] = temp;
+      }
+  }
+
+  bool sorted(int a[], int length) {
+      for (size_t i = 0; i < length - 1; i++) {
+          if (a[i] > a[i + 1]) {
+              return false;
+          }
+      }
+      return true;
+  }
+
+  void bogoSort(int a[], int length) {
+      while (!sorted(a, length)) {
+          shuffle(a, length);
+      }
+  }
+
+  int main(void) {
+      int input[] = {68, 14, 78, 98, 67, 89, 45, 90, 87, 78, 65, 74};
+      int size = sizeof(input) / sizeof(input[0]);
+
+      srand((unsigned)time(NULL));
+
+      bogoSort(input, size);
+
+      printf("Sorted result:");
+      for (size_t i = 0; i < size; i++) {
+          printf(" %d", input[i]);
+      }
+      printf("\n");
+
+      return 0;
+  }
+  ```
+]
