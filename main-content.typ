@@ -64,6 +64,31 @@
   show figure.caption: set text(size: 12pt)
 
   show outline.entry: set block(above: 1.2em)
+  show outline.entry: it => {
+    if it.element.func() == heading {
+      // get supplement for the heading
+      let suppl = it.element.supplement
+
+      // check for appropriate supplement content
+      if suppl == [Приложение] {
+        // fetch the exact counter sequence for this specific heading location
+        let heading_num = numbering(
+          it.element.numbering,
+          ..counter(heading).at(it.element.location()),
+        )
+
+        // re-order them to say: "Appendix A"
+        let new_prefix = [#suppl #heading_num. ]
+
+        // clear the native it.prefix() by passing 'none' and using new order
+        return link(
+          it.element.location(),
+          it.indented(none, new_prefix + it.inner()),
+        )
+      }
+    }
+    it
+  }
 
   show table: set text(size: 12pt)
 
