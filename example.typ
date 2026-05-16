@@ -1,5 +1,5 @@
-#import "titlepage.typ": title_page
-#import "main-content.typ": appendix_section, configure_content, uheading
+#import "titlepage.typ": *
+#import "main-content.typ": *
 
 // Apply content-related styling
 #show: configure_content
