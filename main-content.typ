@@ -62,6 +62,7 @@
   }
 
   show figure.caption: set text(size: 12pt)
+  show figure.where(supplement: [Рис.]): set figure(supplement: [Рисунок])
 
   show outline.entry: set block(above: 1.2em)
   show outline.entry: it => {
